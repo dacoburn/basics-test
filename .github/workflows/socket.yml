@@ -1,0 +1,23 @@
+name: Security Scan
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  security-scan:
+    permissions:
+      issues: write
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Socket Basics
+        uses: SocketDev/socket-basics@9bc90f90468c8be4ce30a7abe6fa56636bde6c15
+        env:
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          socket_security_api_key: ${{ secrets.SOCKET_SECURITY_API_KEY }}
+          use_custom_sast_rules: true
