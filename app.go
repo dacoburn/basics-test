@@ -31,6 +31,7 @@ const (
 )
 
 //index and set cookie
+//test-new
 
 func indexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
