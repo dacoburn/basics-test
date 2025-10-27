@@ -31,7 +31,8 @@ const (
 )
 
 //index and set cookie
-
+//test
+//test
 func indexHandler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 
 	util.SetCookieLevel(w, r, "low") //set cookie Level default to low
